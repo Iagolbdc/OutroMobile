@@ -15,7 +15,32 @@ export default function App() {
     {nome:'Ofertas',link: require('./assets/ofertas.png'), key:4},
   ])
   const [modalVisible, setModalVisible] = useState(false);
+  const [pesquisaInput, setPesquisaInput] = useState('');
 
+  const pesquisa = ()=>{
+    if(pesquisaInput.toLocaleLowerCase() == 'infantil'){
+      return <TouchableOpacity 
+      onPress={() => setModalVisible(!modalVisible)}>
+      <Text style={{fontSize: 20}}>Infantil</Text>
+      </TouchableOpacity>
+    }else if(pesquisaInput.toLocaleLowerCase() == 'feminino'){
+      return <TouchableOpacity 
+      onPress={() => setModalVisible(!modalVisible)}>
+      <Text style={{fontSize: 20}}>Feminino</Text>
+      </TouchableOpacity>
+    }else if(pesquisaInput.toLocaleLowerCase() == 'acessorios'){
+      return <TouchableOpacity 
+      onPress={() => setModalVisible(!modalVisible)}>
+      <Text style={{fontSize: 20}}>Acessorios</Text>
+      </TouchableOpacity>
+    }else if(pesquisaInput.toLocaleLowerCase() == 'ofertas'){
+      return <TouchableOpacity 
+      onPress={() => setModalVisible(!modalVisible)}>
+      <Text style={{fontSize: 20}}>Ofertas</Text>
+      </TouchableOpacity>
+    }
+  return null
+  }
 
   return (
   <View style={{flex:1}}>
@@ -32,13 +57,14 @@ export default function App() {
         }}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <TextInput placeholder='Pesquisar' style={styles.inputStyle}/>
+            <TextInput placeholder='Pesquisar' style={styles.inputStyle} onChangeText={setPesquisaInput}/>
             <Button
               title='Buscar'
               color={'grey'}
               onPress={() => setModalVisible(!modalVisible)}>
             </Button>
           </View>
+          {pesquisa()}
         </View>
       </Modal>
       
@@ -163,16 +189,10 @@ const styles = StyleSheet.create({
   itemFooter:{
     alignItems:'center',
   },
-
+  
   centeredView: {
-    height:'100%',
-    width:'100%',
-  },
- 
-  modalView: {
     backgroundColor: 'white',
     borderRadius: 20,
-    padding: 35,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -181,9 +201,15 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
-    flexDirection:'row',
-    alignItems:'center',
     gap: 10,
+    padding: 50,
+    height: '100%',
+    width: '100%',
+  },
+
+  modalView:{
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 
   inputStyle: {
@@ -191,7 +217,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     borderColor: 'grey',
-    width: '70%',
+    width: '100%',
+    height: '100%'
   }
 
 });
