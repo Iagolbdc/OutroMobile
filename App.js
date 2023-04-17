@@ -11,29 +11,29 @@ export default function App() {
   const [nomeCategoria, setCategoria] = useState([
     {nome:'Infantil',link: require('./assets/infantil.jpg'), key:1},
     {nome:'Feminino',link: require('./assets/feminino.jpg') , key:2},
-    {nome:'Acessorios', link: require('./assets/acessorios.jpg'), key:3},
+    {nome:'Acessórios', link: require('./assets/acessorios.jpg'), key:3},
     {nome:'Ofertas',link: require('./assets/ofertas.png'), key:4},
   ])
   const [modalVisible, setModalVisible] = useState(false);
   const [pesquisaInput, setPesquisaInput] = useState('');
 
   const pesquisa = ()=>{
-    if(pesquisaInput.toLocaleLowerCase() == 'infantil'){
+    if(pesquisaInput.toLocaleLowerCase().trim() == 'infantil'){
       return <TouchableOpacity 
       onPress={() => setModalVisible(!modalVisible)}>
       <Text style={{fontSize: 20}}>Infantil</Text>
       </TouchableOpacity>
-    }else if(pesquisaInput.toLocaleLowerCase() == 'feminino'){
+    }else if(pesquisaInput.toLocaleLowerCase().trim() == 'feminino'){
       return <TouchableOpacity 
       onPress={() => setModalVisible(!modalVisible)}>
       <Text style={{fontSize: 20}}>Feminino</Text>
       </TouchableOpacity>
-    }else if(pesquisaInput.toLocaleLowerCase() == 'acessorios'){
+    }else if(pesquisaInput.toLocaleLowerCase().trim() == 'acessorios' || pesquisaInput.toLocaleLowerCase().trim() == 'acessórios'){
       return <TouchableOpacity 
       onPress={() => setModalVisible(!modalVisible)}>
-      <Text style={{fontSize: 20}}>Acessorios</Text>
+      <Text style={{fontSize: 20}}>Acessórios</Text>
       </TouchableOpacity>
-    }else if(pesquisaInput.toLocaleLowerCase() == 'ofertas'){
+    }else if(pesquisaInput.toLocaleLowerCase().trim() == 'ofertas'){
       return <TouchableOpacity 
       onPress={() => setModalVisible(!modalVisible)}>
       <Text style={{fontSize: 20}}>Ofertas</Text>
@@ -213,12 +213,12 @@ const styles = StyleSheet.create({
   },
 
   inputStyle: {
-    padding: 10,
     borderWidth: 1,
-    borderRadius: 10,
     borderColor: 'grey',
-    width: '100%',
-    height: '100%'
+    width: '80%',
+    borderBottomLeftRadius: 10,
+    borderTopLeftRadius: 10,
+    padding:4
   }
 
 });
